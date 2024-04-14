@@ -1,6 +1,6 @@
 # DBS project 2024 frontend
 
-Frontend for the Database Systems course in my undergraduate degree.
+Frontend for the Database Systems course in my undergraduate degree.\
 Backend: [GitHub](https://github.com/04ac/dbs-proj2024-backend)
 
 ## Install, build and run!
