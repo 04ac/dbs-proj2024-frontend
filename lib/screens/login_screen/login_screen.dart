@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_bookstore/repositories/auth_repo.dart';
 
-import '../home_screen/bloc/home_screen_bloc.dart';
 import '../home_screen/home_screen.dart';
 import 'bloc/login_screen_bloc.dart';
 
@@ -137,7 +134,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          String uname = userNameTec.text;
+                          String passwd = passwordTec.text;
+                          if (uname == "" || passwd == "") {
+                            _bloc.add(InvalidUnamePassEntered());
+                          } else {
+                            _bloc.add(VerifyCustomerCredentialsEvent(
+                                uname: uname, passwd: passwd));
+                          }
+                        },
                         child: const Text(
                           "Sign In",
                           style: TextStyle(fontSize: 18),

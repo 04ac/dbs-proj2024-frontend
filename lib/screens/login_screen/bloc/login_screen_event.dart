@@ -7,6 +7,12 @@ class LoginScreenActionEvent extends LoginScreenEvent {}
 
 class InvalidUnamePassEntered extends LoginScreenActionEvent {}
 
+class VerifyCustomerCredentialsEvent extends LoginScreenEvent {
+  final String uname, passwd;
+
+  VerifyCustomerCredentialsEvent({required this.uname, required this.passwd});
+}
+
 class CreateCustomerEvent extends LoginScreenEvent {
   final String uname, passwd;
 
