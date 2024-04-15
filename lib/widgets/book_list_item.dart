@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_bookstore/models/book.dart';
+import 'package:online_bookstore/screens/book_details_screen/book_details_screen.dart';
 import 'package:rate_in_stars/rate_in_stars.dart';
 
 class BookListItem extends StatelessWidget {
@@ -58,7 +59,7 @@ class BookListItem extends StatelessWidget {
                     editable: false,
                     rating: book.rating!,
                     color: Colors.amber,
-                    iconSize: 20,
+                    iconSize: 24,
                   ),
                   const SizedBox(
                     height: 5,

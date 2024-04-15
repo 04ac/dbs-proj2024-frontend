@@ -39,6 +39,7 @@ dependencies:
   dynamic_color: ^1.7.0
   flutter_bloc: ^8.1.5
   http: ^1.2.1
+  expandable_text: ^2.3.0
 
 dev_dependencies:
   flutter_test:

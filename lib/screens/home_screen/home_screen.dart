@@ -4,6 +4,8 @@ import 'package:online_bookstore/repositories/all_books_repo.dart';
 import 'package:online_bookstore/screens/home_screen/bloc/home_screen_bloc.dart';
 import 'package:online_bookstore/widgets/book_list_item.dart';
 
+import '../book_details_screen/book_details_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -54,7 +56,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView.builder(
                       itemCount: AllBooksRepo.allBooks.length,
                       itemBuilder: (context, index) {
-                        return BookListItem(book: AllBooksRepo.allBooks[index]);
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => BookDetailsScreen(
+                                    book: AllBooksRepo.allBooks[index]),
+                              ),
+                            );
+                          },
+                          child: BookListItem(
+                            book: AllBooksRepo.allBooks[index],
+                          ),
+                        );
                       },
                     ),
                   ),

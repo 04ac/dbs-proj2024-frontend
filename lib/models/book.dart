@@ -1,21 +1,3 @@
-// class Book {
-//   final String title;
-//   final String author;
-//   final double rating;
-//   final String imgUrl;
-//   final String numRatingsStr;
-//   final String yearPubStr;
-//
-//   Book({
-//     required this.title,
-//     required this.author,
-//     required this.rating,
-//     required this.numRatingsStr,
-//     required this.yearPubStr,
-//     required this.imgUrl,
-//   });
-// }
-
 import 'dart:convert';
 
 class Book {
@@ -70,57 +52,3 @@ class Book {
     return data;
   }
 }
-
-// class Book {
-//   int bookId;
-//   String title;
-//   String description;
-//   DateTime datePublished;
-//   double rating;
-//   int ratingCount;
-//   String categories; // Changed to single string
-//   String forAges;
-//   List<String> authors;
-//   String imageUrl;
-//
-//   Book({
-//     required this.bookId,
-//     required this.title,
-//     required this.description,
-//     required this.datePublished,
-//     required this.rating,
-//     required this.ratingCount,
-//     required this.categories,
-//     required this.forAges,
-//     required this.authors,
-//     required this.imageUrl,
-//   });
-//
-//   factory Book.fromJson(Map<String, dynamic> json) {
-//     return Book(
-//       bookId: json['book_id'],
-//       title: json['title'],
-//       description: json['Description'],
-//       datePublished: DateTime.parse(json['date_published']),
-//       rating: json['rating'],
-//       ratingCount: json['rating_count'],
-//       categories: json['categories'],
-//       forAges: json['for_ages'],
-//       authors: List<String>.from(jsonDecode(json['authors'])),
-//       imageUrl: json['image_url'],
-//     );
-//   }
-//
-//   Map<String, dynamic> toJson() => {
-//         'book_id': bookId,
-//         'title': title,
-//         'Description': description,
-//         'date_published': datePublished.toIso8601String(),
-//         'rating': rating,
-//         'rating_count': ratingCount,
-//         'categories': categories,
-//         'for_ages': forAges,
-//         'authors': jsonEncode(authors),
-//         'image_url': imageUrl,
-//       };
-// }
