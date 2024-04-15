@@ -39,7 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 const snackBar = SnackBar(
                   content: Row(
                     children: [
-                      Icon(Icons.error_outline),
+                      Icon(
+                        Icons.error_outline,
+                        color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Text("Oops! an error occurred"),
                     ],
                   ),

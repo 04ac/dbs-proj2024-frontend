@@ -1,6 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:online_bookstore/screens/home_screen/home_screen.dart';
+import 'package:online_bookstore/screens/login_screen/login_screen.dart';
 
 import 'color_schemes.g.dart';
 import 'custom_color.g.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             colorScheme: darkScheme,
             extensions: [darkCustomColors],
           ),
-          home: const HomeScreen(),
+          home: const LoginScreen(),
         );
       },
     );
