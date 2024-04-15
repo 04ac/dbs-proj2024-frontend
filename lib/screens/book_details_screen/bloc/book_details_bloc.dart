@@ -24,6 +24,7 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
         emit(BookAlreadyThereInWishlistActionState());
         return;
       }
+      emit(AddingToWishListActionState());
       final res = await WishlistRepo.addToWishList(event.book);
 
       if (res.statusCode == 200) {

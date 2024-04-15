@@ -12,3 +12,5 @@ class UnableToAddToWishlistActionState extends BookDetailsActionState {}
 class AddedToWishlistActionState extends BookDetailsActionState {}
 
 class BookAlreadyThereInWishlistActionState extends BookDetailsActionState {}
+
+class AddingToWishListActionState extends BookDetailsActionState {}

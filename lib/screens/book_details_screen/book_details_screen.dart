@@ -95,6 +95,22 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 break;
+              case AddingToWishListActionState:
+                const snackBar = SnackBar(
+                  content: Row(
+                    children: [
+                      CircularProgressIndicator.adaptive(
+                        strokeWidth: 3.0,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text("Adding to wishlist..."),
+                    ],
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                break;
             }
           },
           builder: (context, state) {
