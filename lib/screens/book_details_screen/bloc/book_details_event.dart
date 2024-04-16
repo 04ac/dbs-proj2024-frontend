@@ -10,3 +10,9 @@ class AddBookToWishlistActionEvent extends BookDetailsActionEvent {
 
   AddBookToWishlistActionEvent({required this.book});
 }
+
+class RemoveBookFromWishlistActionEvent extends BookDetailsActionEvent {
+  final Book book;
+
+  RemoveBookFromWishlistActionEvent({required this.book});
+}

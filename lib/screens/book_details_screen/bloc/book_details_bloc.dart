@@ -14,6 +14,7 @@ part 'book_details_state.dart';
 class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
   BookDetailsBloc() : super(BookDetailsInitial()) {
     on<AddBookToWishlistActionEvent>(addBookToWishlistActionEvent);
+    on<RemoveBookFromWishlistActionEvent>(removeBookFromWishlistActionEvent);
   }
 
   FutureOr<void> addBookToWishlistActionEvent(
@@ -37,6 +38,32 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
         print(e);
       }
       emit(UnableToAddToWishlistActionState());
+    }
+  }
+
+  FutureOr<void> removeBookFromWishlistActionEvent(
+      RemoveBookFromWishlistActionEvent event,
+      Emitter<BookDetailsState> emit) async {
+    try {
+      if (!AuthRepo.currentUser!.wishList.contains(event.book)) {
+        emit(BookNotThereInWishlistActionState());
+        return;
+      }
+      emit(RemovingFromWishListActionState());
+      final res = await WishlistRepo.removeFromWishList(event.book);
+
+      if (res.statusCode == 200) {
+        emit(RemovedFromWishlistActionState());
+      } else {
+        emit(
+            UnableToAddToWishlistActionState()); // Displays Oops, an error occurred!
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      emit(
+          UnableToAddToWishlistActionState()); // Displays Oops, an error occurred!
     }
   }
 }

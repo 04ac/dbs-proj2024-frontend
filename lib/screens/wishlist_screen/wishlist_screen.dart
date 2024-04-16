@@ -56,12 +56,14 @@ class _WishlistScreenState extends State<WishlistScreen> {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => BookDetailsScreen(
-                          book: AuthRepo.currentUser!.wishList[index]),
-                    ),
-                  );
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (context) => BookDetailsScreen(
+                              book: AuthRepo.currentUser!.wishList[index]),
+                        ),
+                      )
+                      .whenComplete(() => setState(() {}));
                 },
                 child: BookListItem(
                   book: AuthRepo.currentUser!.wishList[index],

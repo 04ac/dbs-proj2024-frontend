@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:online_bookstore/models/customer.dart';
 import 'package:online_bookstore/repositories/all_books_repo.dart';
 import 'package:online_bookstore/repositories/auth_repo.dart';
@@ -29,6 +30,31 @@ class WishlistRepo {
 
     final response =
         await client.post(url, headers: headers, body: jsonEncode(body));
+    return response;
+  }
+
+  static Future<http.Response> removeFromWishList(Book book) async {
+    Customer user = AuthRepo.currentUser!;
+    if (user.wishList.isNotEmpty) {
+      user.wishList.remove(book);
+    } else {
+      user.wishList = await getItemsFromWishListFromDB();
+      user.wishList.remove(book);
+    }
+
+    int customer_id = user.id;
+    int book_id = book.bookId!;
+
+    if (kDebugMode) {
+      print(user.wishList);
+    }
+
+    final client = http.Client();
+
+    final url = Uri.parse(
+        'https://dbs-proj2024-backend.vercel.app/wishlist/$customer_id/$book_id');
+    final response = await client.delete(url);
+
     return response;
   }
 

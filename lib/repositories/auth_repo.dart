@@ -10,8 +10,12 @@ class AuthRepo {
   static Future<http.Response> createCustomer(
       String uname, String passwd) async {
     final DateTime now = DateTime.now();
-    final String currentDate = DateFormat('yyyy-mm-dd').format(now);
-
+    print("Hello");
+    if (kDebugMode) {
+      print(now);
+    }
+    final String currentDate = DateFormat('yyyy-MM-dd').format(now);
+    print(currentDate);
     final client = http.Client();
 
     final url = Uri.parse('https://dbs-proj2024-backend.vercel.app/customers/');
