@@ -7,6 +7,7 @@ import 'package:online_bookstore/screens/login_screen/login_screen.dart';
 import 'package:online_bookstore/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:online_bookstore/widgets/book_list_item.dart';
 
+import '../../widgets/custom_search_delegate.dart';
 import '../book_details_screen/book_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,6 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Books"),
         actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(
+                        searchTerms: AllBooksRepo.allBooks),
+                  );
+                },
+                icon: const Icon(Icons.search)),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: IconButton(

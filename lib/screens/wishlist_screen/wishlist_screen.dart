@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_bookstore/repositories/auth_repo.dart';
 
 import '../../widgets/book_list_item.dart';
+import '../../widgets/custom_search_delegate.dart';
 import '../book_details_screen/book_details_screen.dart';
 import '../login_screen/login_screen.dart';
 
@@ -19,6 +20,18 @@ class _WishlistScreenState extends State<WishlistScreen> {
       appBar: AppBar(
         title: const Text("My Wishlist"),
         actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(
+                        searchTerms: AuthRepo.currentUser!.wishList),
+                  );
+                },
+                icon: const Icon(Icons.search)),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: IconButton(
