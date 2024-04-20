@@ -2,6 +2,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_bookstore/repositories/auth_repo.dart';
+import 'package:online_bookstore/widgets/book_specs_dialog.dart';
 import 'package:online_bookstore/widgets/snack_b.dart';
 import 'package:rate_in_stars/rate_in_stars.dart';
 
@@ -251,6 +252,17 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                               : Colors.yellow,
                         ),
                       ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              getBookSpecificationsDialogObject(
+                                  context, widget.book),
+                        );
+                      },
+                      child: const Text("Technical Specifications"),
                     ),
                     const SizedBox(
                       height: 30,
