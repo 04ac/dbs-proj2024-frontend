@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               case AllBooksLoadingState:
                 return const Center(
-                  child: Expanded(child: CircularProgressIndicator.adaptive()),
+                  child: CircularProgressIndicator.adaptive(),
                 );
               default:
                 return const Text("Default");
