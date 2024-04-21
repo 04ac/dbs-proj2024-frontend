@@ -300,40 +300,33 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                     BlocBuilder<BookDetailsBloc, BookDetailsState>(
                         builder: (context, state) {
                       switch (state.runtimeType) {
-                        case AddedToWishlistActionState:
-                          final st = state as AddedToWishlistActionState;
+                        default:
+                          final recs = AuthRepo.currentUser!.recommendations;
                           return SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.6,
-                            child: ListView.builder(
-                              itemCount: st.recommendations.length,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => BookDetailsScreen(
-                                            book: AllBooksRepo.allBooks
-                                                .where((book) =>
-                                                    book.bookId ==
-                                                    st.recommendations[index])
-                                                .first),
-                                      ),
-                                    );
-                                  },
-                                  child: BookListItem(
-                                      book: AllBooksRepo.allBooks
-                                          .where((book) =>
-                                              book.bookId ==
-                                              st.recommendations[index])
-                                          .first),
-                                );
-                              },
-                            ),
-                          );
-                        default:
-                          return const Center(
-                            child: Text(
-                                "Add a book to wishlist for recommendations"),
+                            child: recs.isNotEmpty
+                                ? ListView.builder(
+                                    itemCount: recs.length,
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BookDetailsScreen(
+                                                book: recs[index],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: BookListItem(book: recs[index]),
+                                      );
+                                    },
+                                  )
+                                : const Center(
+                                    child: Text(
+                                        "Add a book to your wishlist to get started!"),
+                                  ),
                           );
                       }
                     }),

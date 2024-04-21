@@ -40,7 +40,7 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
             .map((e) =>
                 AllBooksRepo.allBooks.where((book) => book.bookId == e).first)
             .toList();
-        emit(AddedToWishlistActionState(recommendations: recs));
+        emit(AddedToWishlistActionState());
       } else {
         emit(UnableToAddToWishlistActionState());
       }
