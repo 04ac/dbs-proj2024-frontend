@@ -24,6 +24,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
 
   FutureOr<void> createCustomerEvent(
       CreateCustomerEvent event, Emitter<LoginScreenState> emit) async {
+    emit(DisplayLoadingSnackBarActionState());
     final res = await AuthRepo.createCustomer(event.uname, event.passwd);
 
     if (res.statusCode == 200) {
@@ -36,6 +37,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
   FutureOr<void> verifyCustomerCredentialsEvent(
       VerifyCustomerCredentialsEvent event,
       Emitter<LoginScreenState> emit) async {
+    emit(DisplayLoadingSnackBarActionState());
     final res = await AuthRepo.verifyCustomer(event.uname, event.passwd);
 
     if (res.statusCode == 200) {

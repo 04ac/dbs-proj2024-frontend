@@ -10,6 +10,8 @@ class LoginScreenActionState extends LoginScreenState {}
 class DisplayInvalidUnamePwdSnackBarActionState
     extends LoginScreenActionState {}
 
+class DisplayLoadingSnackBarActionState extends LoginScreenActionState {}
+
 class CustomerCreationNotSuccessfulActionState extends LoginScreenActionState {}
 
 class DisplayHomeScreenActionState extends LoginScreenActionState {}

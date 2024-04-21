@@ -29,6 +29,23 @@ class _LoginScreenState extends State<LoginScreen> {
             child: BlocConsumer<LoginScreenBloc, LoginScreenState>(
               listener: (context, state) {
                 switch (state.runtimeType) {
+                  case DisplayLoadingSnackBarActionState:
+                    const snackBar = SnackBar(
+                      content: Row(
+                        children: [
+                          CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text("Logging you in..."),
+                        ],
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    break;
                   case DisplayInvalidUnamePwdSnackBarActionState:
                     const snackBar = SnackBar(
                       content: Row(
@@ -44,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     break;
                   case DisplayHomeScreenActionState:
@@ -61,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
@@ -85,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     break;
                 }
