@@ -7,6 +7,8 @@ import 'package:online_bookstore/widgets/snack_b.dart';
 import 'package:rate_in_stars/rate_in_stars.dart';
 
 import '../../models/book.dart';
+import '../../repositories/all_books_repo.dart';
+import '../../widgets/book_list_item.dart';
 import '../login_screen/login_screen.dart';
 import '../wishlist_screen/wishlist_screen.dart';
 import 'bloc/book_details_bloc.dart';
@@ -67,29 +69,30 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: IconButton(
-                  onPressed: () {
-                    AuthRepo.currentUser = null;
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()),
-                    );
-                    const snackBar = SnackBar(
-                      content: Row(
-                        children: [
-                          Icon(
-                            Icons.logout,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text("Logged out successfully!"),
-                        ],
-                      ),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  },
-                  icon: const Icon(Icons.logout)),
+                onPressed: () {
+                  AuthRepo.currentUser = null;
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
+                  );
+                  const snackBar = SnackBar(
+                    content: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text("Logged out successfully!"),
+                      ],
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+                icon: const Icon(Icons.logout),
+              ),
             ),
           ],
         ),
@@ -278,6 +281,62 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                         height: 1.5,
                       ),
                     ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "Recommendations!",
+                      style:
+                          TextStyle(fontSize: 28, color: Colors.amber.shade800),
+                    ),
+                    Text(
+                      "Based on your current wishlist",
+                      style:
+                          TextStyle(fontSize: 18, color: Colors.green.shade400),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    BlocBuilder<BookDetailsBloc, BookDetailsState>(
+                        builder: (context, state) {
+                      switch (state.runtimeType) {
+                        case AddedToWishlistActionState:
+                          final st = state as AddedToWishlistActionState;
+                          return SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.6,
+                            child: ListView.builder(
+                              itemCount: st.recommendations.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => BookDetailsScreen(
+                                            book: AllBooksRepo.allBooks
+                                                .where((book) =>
+                                                    book.bookId ==
+                                                    st.recommendations[index])
+                                                .first),
+                                      ),
+                                    );
+                                  },
+                                  child: BookListItem(
+                                      book: AllBooksRepo.allBooks
+                                          .where((book) =>
+                                              book.bookId ==
+                                              st.recommendations[index])
+                                          .first),
+                                );
+                              },
+                            ),
+                          );
+                        default:
+                          return const Center(
+                            child: Text(
+                                "Add a book to wishlist for recommendations"),
+                          );
+                      }
+                    }),
                     const SizedBox(
                       height: 50,
                     ),

@@ -9,7 +9,11 @@ class BookDetailsActionState extends BookDetailsState {}
 
 class UnableToAddToWishlistActionState extends BookDetailsActionState {}
 
-class AddedToWishlistActionState extends BookDetailsActionState {}
+class AddedToWishlistActionState extends BookDetailsActionState {
+  final List recommendations;
+
+  AddedToWishlistActionState({required this.recommendations});
+}
 
 class BookAlreadyThereInWishlistActionState extends BookDetailsActionState {}
 

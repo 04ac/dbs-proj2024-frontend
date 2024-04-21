@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:online_bookstore/repositories/recommendations_repo.dart';
 
 import '../../../repositories/all_books_repo.dart';
 import '../../../repositories/auth_repo.dart';
@@ -20,8 +21,10 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     emit(AllBooksLoadingState());
     try {
       AllBooksRepo.allBooks = await AllBooksRepo.fetchBooks();
-      AuthRepo.currentUser?.wishList =
+      AuthRepo.currentUser!.wishList =
           await WishlistRepo.getItemsFromWishListFromDB();
+      AuthRepo.currentUser!.recommendations =
+          await RecommendationsRepo.getRecommendationsFromDB();
     } catch (e) {
       emit(AllBooksErrorState());
       return;

@@ -20,7 +20,9 @@ class WishlistRepo {
     int customer_id = user.id;
     int book_id = book.bookId!;
 
-    print(user.wishList);
+    if (kDebugMode) {
+      print(user.wishList);
+    }
 
     final client = http.Client();
 
