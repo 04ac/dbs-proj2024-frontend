@@ -47,7 +47,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         AuthRepo.currentUser = Customer(
             id: mp["customer"][0][0],
             name: mp["customer"][0][1].toString(),
-            passwd: mp["customer"][0][3].toString());
+            passwd: mp["customer"][0][2].toString());
         emit(DisplayHomeScreenActionState());
       }
     } else {
